@@ -1,0 +1,512 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1666194825212-1
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: real_world_pkey
+                  name: id
+                  type: INTEGER
+            tableName: real_world
+  - changeSet:
+      id: 1666194825212-2
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: hell_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: produced_screams
+                  type: numeric(0)
+            tableName: hell
+  - changeSet:
+      id: 1666194825212-3
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: distribution_layer_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: screams_count
+                  type: INTEGER
+            tableName: distribution_layer
+  - changeSet:
+      id: 1666194825212-4
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: world_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  constraints:
+                    nullable: false
+                  name: real_world_id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: hell_id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: distribution_layer_id
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: !!float '0'
+                  name: year
+                  type: INTEGER
+            tableName: world
+  - changeSet:
+      id: 1666194825212-5
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: distribution_committee_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: distribution_layer_id
+                  type: INTEGER
+              - column:
+                  name: estimation_error
+                  type: numeric(0)
+            tableName: distribution_committee
+  - changeSet:
+      id: 1666194825212-6
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: distributor_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: distribution_committee_id
+                  type: INTEGER
+              - column:
+                  name: age
+                  type: INTEGER
+              - column:
+                  name: mood
+                  type: INTEGER
+            tableName: distributor
+  - changeSet:
+      id: 1666194825212-7
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: distributor_skill_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: distributor_id
+                  type: INTEGER
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  name: required_screams
+                  type: INTEGER
+            tableName: distributor_skill
+  - changeSet:
+      id: 1666194825212-8
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: human_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: real_world_id
+                  type: INTEGER
+              - column:
+                  name: distribution_layer_id
+                  type: INTEGER
+              - column:
+                  name: hell_id
+                  type: INTEGER
+              - column:
+                  name: age
+                  type: INTEGER
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  name: last_name
+                  type: VARCHAR
+              - column:
+                  name: nationality
+                  type: VARCHAR
+              - column:
+                  constraints:
+                    nullable: false
+                  name: number_of_good_deeds
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: number_of_righteous_deeds
+                  type: INTEGER
+            tableName: human
+  - changeSet:
+      id: 1666194825212-9
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: demon_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: hell_id
+                  type: INTEGER
+              - column:
+                  name: ages_left_in_hell
+                  type: numeric(0)
+            tableName: demon
+  - changeSet:
+      id: 1666194825212-10
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: demon_specialisation_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: name
+                  type: VARCHAR
+              - column:
+                  name: power
+                  type: numeric(0)
+            tableName: demon_specialisation
+  - changeSet:
+      id: 1666194825212-11
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: demon_demon_specialisation_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: demon_specialisation
+                  type: INTEGER
+              - column:
+                  name: demon_id
+                  type: INTEGER
+            tableName: demon_demon_specialisation
+  - changeSet:
+      id: 1666194825212-12
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: demon_human_pkey
+                  name: id
+                  type: INTEGER
+              - column:
+                  name: human_id
+                  type: INTEGER
+              - column:
+                  name: demon_id
+                  type: INTEGER
+            tableName: demon_human
+  - changeSet:
+      id: 1666194825212-13
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: distribution_layer_id
+            constraintName: world_distribution_layer_id_key
+            tableName: world
+  - changeSet:
+      id: 1666194825212-14
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: hell_id
+            constraintName: world_hell_id_key
+            tableName: world
+  - changeSet:
+      id: 1666194825212-15
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: real_world_id
+            constraintName: world_real_world_id_key
+            tableName: world
+  - changeSet:
+      id: 1666194825212-16
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: demon_id
+            baseTableName: demon_demon_specialisation
+            constraintName: demon_demon_specialisation_demon_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: demon
+  - changeSet:
+      id: 1666194825212-17
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: demon_specialisation
+            baseTableName: demon_demon_specialisation
+            constraintName: demon_demon_specialisation_demon_specialisation_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: demon_specialisation
+  - changeSet:
+      id: 1666194825212-18
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: hell_id
+            baseTableName: demon
+            constraintName: demon_hell_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: hell
+  - changeSet:
+      id: 1666194825212-19
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: demon_id
+            baseTableName: demon_human
+            constraintName: demon_human_demon_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: demon
+  - changeSet:
+      id: 1666194825212-20
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: human_id
+            baseTableName: demon_human
+            constraintName: demon_human_human_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: human
+  - changeSet:
+      id: 1666194825212-21
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: distribution_layer_id
+            baseTableName: distribution_committee
+            constraintName: distribution_committee_distribution_layer_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: distribution_layer
+  - changeSet:
+      id: 1666194825212-22
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: distribution_committee_id
+            baseTableName: distributor
+            constraintName: distributor_distribution_committee_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: distribution_committee
+  - changeSet:
+      id: 1666194825212-23
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: distributor_id
+            baseTableName: distributor_skill
+            constraintName: distributor_skill_distributor_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: distributor
+  - changeSet:
+      id: 1666194825212-24
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: distribution_layer_id
+            baseTableName: human
+            constraintName: human_distribution_layer_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: distribution_layer
+  - changeSet:
+      id: 1666194825212-25
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: hell_id
+            baseTableName: human
+            constraintName: human_hell_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: hell
+  - changeSet:
+      id: 1666194825212-26
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: real_world_id
+            baseTableName: human
+            constraintName: human_real_world_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: real_world
+  - changeSet:
+      id: 1666194825212-27
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: distribution_layer_id
+            baseTableName: world
+            constraintName: world_distribution_layer_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: distribution_layer
+  - changeSet:
+      id: 1666194825212-28
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: hell_id
+            baseTableName: world
+            constraintName: world_hell_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: hell
+  - changeSet:
+      id: 1666194825212-29
+      author: nt1dc (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: real_world_id
+            baseTableName: world
+            constraintName: world_real_world_id_fkey
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: real_world
+

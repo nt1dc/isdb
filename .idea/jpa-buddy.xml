@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="snapshotDbValue" value="6d673f89-4530-4c19-bb41-eda463defdf6" />
+    <option name="snapshotModelValue" value="Default" />
+    <option name="updateChangeLogPath" value="" />
+    <option name="updateDbConnectionName" value="6d673f89-4530-4c19-bb41-eda463defdf6" />
+    <option name="reverseEngineeringLastDbConnectionId" value="6d673f89-4530-4c19-bb41-eda463defdf6" />
+    <option name="reLastEntityCreationPackage" value="course_work/distributed_system/src/main/java/com/example/distributed_system" />
+  </component>
+</project>

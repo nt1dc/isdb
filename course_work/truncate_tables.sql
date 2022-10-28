@@ -1,0 +1,11 @@
+TRUNCATE demon,
+    demon_demon_specialisation,
+    demon_human,
+    demon_specialisation, distribution_committee,
+    distribution_layer,
+    distributor,
+    distributor_skill,
+    hell,
+    human,
+    real_world,
+    world;

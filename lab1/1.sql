@@ -1,1 +1,0 @@
-TRUNCATE human, brain, brain_thought

@@ -1,0 +1,11 @@
+services:
+  database:
+    image: postgres
+    container_name: isdb_course_work_postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=destructed_system
+    command: postgres -p 5432
+    ports:
+      - 5432:5432

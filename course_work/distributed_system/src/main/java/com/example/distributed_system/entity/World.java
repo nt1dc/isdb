@@ -10,7 +10,7 @@ public class World {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Lob
+//    @Lob
     @Column(name = "name")
     private String name;
 
@@ -76,5 +76,4 @@ public class World {
     public void setYear(Integer year) {
         this.year = year;
     }
-
 }

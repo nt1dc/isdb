@@ -27,15 +27,13 @@ public class Human {
     @Column(name = "age")
     private Integer age;
 
-    @Lob
     @Column(name = "name")
     private String name;
 
-    @Lob
     @Column(name = "last_name")
     private String lastName;
 
-    @Lob
+
     @Column(name = "nationality")
     private String nationality;
 

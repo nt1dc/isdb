@@ -1,5 +1,6 @@
 package com.example.distributed_system.dto;
 
+import com.example.distributed_system.entity.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class HumanDto implements Serializable {
     private String nationality;
     private Integer numberOfGoodDeeds;
     private Integer numberOfRighteousDeeds;
+    private Sex sex;
 }

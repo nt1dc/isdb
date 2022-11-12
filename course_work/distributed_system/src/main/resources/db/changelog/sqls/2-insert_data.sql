@@ -8,7 +8,7 @@ INSERT INTO distribution_layer
 VALUES (1, 1);
 
 INSERT INTO world
-VALUES (1, 'BEST WORLD EVER', 1, 1, 1,1);
+VALUES (1, 'BEST WORLD EVER', 1, 1, 1, 1);
 INSERT INTO distribution_committee
 VALUES (1, 1, 1);
 INSERT INTO distributor
@@ -31,9 +31,9 @@ VALUES (1, 1, 1),
        (2, 2, 1),
        (3, 3, 2);
 INSERT INTO human
-VALUES (1, 1, null, null, 20, 'Dima', 'Antonov', 'я русский', 1, 100),
-       (2, null, 1, null, 20, 'Семен', 'Мокров', 'я русский', 5, 3),
-       (3, null, null, 1, 666, 'Евгений', 'Апоц', 'я русский', 228, 666);
+VALUES (1, 1, null, null, 20, 'Dima', 'Antonov', 'я русский', 1, 100, 1),
+       (2, null, 1, null, 20, 'Семен', 'Мокров', 'я русский', 5, 3, 1),
+       (3, null, null, 1, 666, 'Евгений', 'Апоц', 'я русский', 228, 666, 1);
 INSERT INTO demon_human
 VALUES (1, 3, 1),
        (2, 3, 2),

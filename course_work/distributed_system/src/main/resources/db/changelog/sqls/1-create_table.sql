@@ -60,10 +60,11 @@ CREATE TABLE IF NOT EXISTS human
     name                      VARCHAR,
     last_name                 VARCHAR,
     nationality               VARCHAR,
-    number_of_good_deeds      INT                NOT NULL
-        CONSTRAINT positive_number_of_good_deeds check ( number_of_good_deeds >= 0),
-    number_of_righteous_deeds INT                NOT NULL
-        CONSTRAINT positive_number_of_righteous_deeds check ( number_of_good_deeds >= 0),
+    number_of_good_deeds      INT                NOT NULL,
+    CONSTRAINT positive_number_of_good_deeds check ( number_of_good_deeds >= 0),
+    number_of_righteous_deeds INT                NOT NULL,
+    sex                       INT,
+    CONSTRAINT positive_number_of_righteous_deeds check ( number_of_good_deeds >= 0),
     CONSTRAINT attached_to_world check ( real_world_id IS NOT NULL or hell_id IS NOT NULL or
                                          distribution_layer_id IS NOT NULL )
 

@@ -19,11 +19,150 @@
       "description": "Basic Error Controller"
     },
     {
+      "name": "committee-controller",
+      "description": "Committee Controller"
+    },
+    {
+      "name": "controller-dlya-semena",
+      "description": "Controller Dlya Semena"
+    },
+    {
       "name": "world-controller",
       "description": "World Controller"
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "controller-dlya-semena"
+        ],
+        "summary": "getWorldID",
+        "operationId": "getWorldIDUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/committee/{committeeId}/distributor": {
+      "post": {
+        "tags": [
+          "committee-controller"
+        ],
+        "summary": "addDistributor",
+        "operationId": "addDistributorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "committeeId",
+            "in": "path",
+            "description": "committeeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "distributor",
+            "description": "distributor",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Distributor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DistributionCommittee"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/committee/{committeeId}/{distributorID}": {
+      "delete": {
+        "tags": [
+          "committee-controller"
+        ],
+        "summary": "deleteDistributor",
+        "operationId": "deleteDistributorUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "committeeId",
+            "in": "path",
+            "description": "committeeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "distributorID",
+            "in": "path",
+            "description": "distributorID",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DistributionCommittee"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/error": {
       "get": {
         "tags": [
@@ -236,7 +375,7 @@
         }
       }
     },
-    "/world/{id}": {
+    "/world/{worldId}": {
       "get": {
         "tags": [
           "world-controller"
@@ -248,9 +387,126 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "worldId",
             "in": "path",
-            "description": "id",
+            "description": "worldId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WorldResp"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/world/{worldId}/amnesty": {
+      "get": {
+        "tags": [
+          "world-controller"
+        ],
+        "summary": "amnestyStrat",
+        "operationId": "amnestyStratUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "worldId",
+            "in": "path",
+            "description": "worldId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WorldResp"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/world/{worldId}/genocide": {
+      "get": {
+        "tags": [
+          "world-controller"
+        ],
+        "summary": "genocideStart",
+        "operationId": "genocideStartUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "worldId",
+            "in": "path",
+            "description": "worldId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/WorldResp"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/world/{worldId}/nextYear": {
+      "get": {
+        "tags": [
+          "world-controller"
+        ],
+        "summary": "nextYear",
+        "operationId": "nextYearUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "worldId",
+            "in": "path",
+            "description": "worldId",
             "required": true,
             "type": "integer",
             "format": "int32"
@@ -279,23 +535,32 @@
   "definitions": {
     "DemonDto": {
       "type": "object",
+      "properties": {
+        "agesLeftInHell": {
+          "type": "number"
+        }
+      },
       "title": "DemonDto"
     },
-    "DistributionCommitteeDto": {
+    "DistributionCommittee": {
       "type": "object",
       "properties": {
         "distributors": {
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "$ref": "#/definitions/DistributorDto"
+            "$ref": "#/definitions/Distributor"
           }
         },
         "estimationError": {
           "type": "number"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
         }
       },
-      "title": "DistributionCommitteeDto"
+      "title": "DistributionCommittee"
     },
     "DistributionLayerDto": {
       "type": "object",
@@ -304,7 +569,7 @@
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "$ref": "#/definitions/DistributionCommitteeDto"
+            "$ref": "#/definitions/DistributionCommittee"
           }
         },
         "humans": {
@@ -321,7 +586,7 @@
       },
       "title": "DistributionLayerDto"
     },
-    "DistributorDto": {
+    "Distributor": {
       "type": "object",
       "properties": {
         "age": {
@@ -332,8 +597,12 @@
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "$ref": "#/definitions/DistributorSkillDto"
+            "$ref": "#/definitions/DistributorSkill"
           }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
         },
         "mood": {
           "type": "string",
@@ -343,11 +612,15 @@
           ]
         }
       },
-      "title": "DistributorDto"
+      "title": "Distributor"
     },
-    "DistributorSkillDto": {
+    "DistributorSkill": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
         "name": {
           "type": "string"
         },
@@ -356,7 +629,7 @@
           "format": "int32"
         }
       },
-      "title": "DistributorSkillDto"
+      "title": "DistributorSkill"
     },
     "HellDto": {
       "type": "object",
@@ -384,27 +657,6 @@
     "HumanDto": {
       "type": "object",
       "properties": {
-        "age": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "lastName": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "nationality": {
-          "type": "string"
-        },
-        "numberOfGoodDeeds": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "numberOfRighteousDeeds": {
-          "type": "integer",
-          "format": "int32"
-        },
         "sex": {
           "type": "string",
           "enum": [

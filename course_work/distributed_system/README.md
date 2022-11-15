@@ -5,4 +5,6 @@ docker-compose up
 ```
 тут крч сваггер лежит 
 
-http://localhost:8080/v2/api-docs
+http://localhost:8080/swagger-ui/index.html
+
+http://localhost:8080/v3/api-docs/

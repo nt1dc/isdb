@@ -1,376 +1,53 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.1",
   "info": {
-    "description": "Api Documentation",
-    "version": "1.0",
-    "title": "Api Documentation",
-    "termsOfService": "urn:tos",
-    "contact": {},
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0"
-    }
+    "title": "OpenAPI definition",
+    "version": "v0"
   },
-  "host": "localhost:8080",
-  "basePath": "/",
-  "tags": [
+  "servers": [
     {
-      "name": "basic-error-controller",
-      "description": "Basic Error Controller"
-    },
-    {
-      "name": "committee-controller",
-      "description": "Committee Controller"
-    },
-    {
-      "name": "controller-dlya-semena",
-      "description": "Controller Dlya Semena"
-    },
-    {
-      "name": "world-controller",
-      "description": "World Controller"
+      "url": "http://localhost:8080/",
+      "description": "Generated server url"
     }
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "controller-dlya-semena"
-        ],
-        "summary": "getWorldID",
-        "operationId": "getWorldIDUsingGET",
-        "produces": [
-          "*/*"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/committee/{committeeId}/distributor": {
       "post": {
         "tags": [
           "committee-controller"
         ],
-        "summary": "addDistributor",
-        "operationId": "addDistributorUsingPOST",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "*/*"
-        ],
+        "operationId": "addDistributor",
         "parameters": [
           {
             "name": "committeeId",
             "in": "path",
-            "description": "committeeId",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "in": "body",
-            "name": "distributor",
-            "description": "distributor",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Distributor"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Distributor"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/DistributionCommittee"
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistributionCommittee"
+                }
+              }
             }
-          },
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/committee/{committeeId}/{distributorID}": {
-      "delete": {
-        "tags": [
-          "committee-controller"
-        ],
-        "summary": "deleteDistributor",
-        "operationId": "deleteDistributorUsingDELETE",
-        "produces": [
-          "*/*"
-        ],
-        "parameters": [
-          {
-            "name": "committeeId",
-            "in": "path",
-            "description": "committeeId",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "distributorID",
-            "in": "path",
-            "description": "distributorID",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/DistributionCommittee"
-            }
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "/error": {
-      "get": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingGET",
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "head": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingHEAD",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingPOST",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingPUT",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "201": {
-            "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingDELETE",
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      },
-      "options": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingOPTIONS",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "basic-error-controller"
-        ],
-        "summary": "errorHtml",
-        "operationId": "errorHtmlUsingPATCH",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "text/html"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ModelAndView"
-            }
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
           }
         }
       }
@@ -380,114 +57,28 @@
         "tags": [
           "world-controller"
         ],
-        "summary": "getWorld",
-        "operationId": "getWorldUsingGET",
-        "produces": [
-          "*/*"
-        ],
+        "operationId": "getWorld",
         "parameters": [
           {
             "name": "worldId",
             "in": "path",
-            "description": "worldId",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/WorldResp"
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldResp"
+                }
+              }
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/world/{worldId}/amnesty": {
-      "get": {
-        "tags": [
-          "world-controller"
-        ],
-        "summary": "amnestyStrat",
-        "operationId": "amnestyStratUsingGET",
-        "produces": [
-          "*/*"
-        ],
-        "parameters": [
-          {
-            "name": "worldId",
-            "in": "path",
-            "description": "worldId",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/WorldResp"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/world/{worldId}/genocide": {
-      "get": {
-        "tags": [
-          "world-controller"
-        ],
-        "summary": "genocideStart",
-        "operationId": "genocideStartUsingGET",
-        "produces": [
-          "*/*"
-        ],
-        "parameters": [
-          {
-            "name": "worldId",
-            "in": "path",
-            "description": "worldId",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/WorldResp"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           }
         }
       }
@@ -497,319 +88,318 @@
         "tags": [
           "world-controller"
         ],
-        "summary": "nextYear",
-        "operationId": "nextYearUsingGET",
-        "produces": [
-          "*/*"
-        ],
+        "operationId": "nextYear",
         "parameters": [
           {
             "name": "worldId",
             "in": "path",
-            "description": "worldId",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/world/{worldId}/genocide": {
+      "get": {
+        "tags": [
+          "world-controller"
+        ],
+        "operationId": "genocideStart",
+        "parameters": [
+          {
+            "name": "worldId",
+            "in": "path",
+            "required": true,
             "schema": {
-              "$ref": "#/definitions/WorldResp"
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/world/{worldId}/amnesty": {
+      "get": {
+        "tags": [
+          "world-controller"
+        ],
+        "operationId": "amnestyStrat",
+        "parameters": [
+          {
+            "name": "worldId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/semen": {
+      "get": {
+        "tags": [
+          "controller-dlya-semena"
+        ],
+        "operationId": "getWorldId",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/committee/{committeeId}/{distributorID}": {
+      "delete": {
+        "tags": [
+          "committee-controller"
+        ],
+        "operationId": "deleteDistributor",
+        "parameters": [
+          {
+            "name": "committeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
+          {
+            "name": "distributorID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistributionCommittee"
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "definitions": {
-    "DemonDto": {
-      "type": "object",
-      "properties": {
-        "agesLeftInHell": {
-          "type": "number"
-        }
-      },
-      "title": "DemonDto"
-    },
-    "DistributionCommittee": {
-      "type": "object",
-      "properties": {
-        "distributors": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/Distributor"
-          }
-        },
-        "estimationError": {
-          "type": "number"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "DistributionCommittee"
-    },
-    "DistributionLayerDto": {
-      "type": "object",
-      "properties": {
-        "distributionCommittees": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/DistributionCommittee"
-          }
-        },
-        "humans": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/HumanDto"
-          }
-        },
-        "screamsCount": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "DistributionLayerDto"
-    },
-    "Distributor": {
-      "type": "object",
-      "properties": {
-        "age": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "distributorSkills": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/DistributorSkill"
-          }
-        },
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "mood": {
-          "type": "string",
-          "enum": [
-            "BAD",
-            "GOOD"
-          ]
-        }
-      },
-      "title": "Distributor"
-    },
-    "DistributorSkill": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "name": {
-          "type": "string"
-        },
-        "requiredScreams": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "title": "DistributorSkill"
-    },
-    "HellDto": {
-      "type": "object",
-      "properties": {
-        "demons": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/DemonDto"
-          }
-        },
-        "humans": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/HumanDto"
-          }
-        },
-        "producedScreams": {
-          "type": "number"
-        }
-      },
-      "title": "HellDto"
-    },
-    "HumanDto": {
-      "type": "object",
-      "properties": {
-        "sex": {
-          "type": "string",
-          "enum": [
-            "FEMALE",
-            "MALE"
-          ]
-        }
-      },
-      "title": "HumanDto"
-    },
-    "ModelAndView": {
-      "type": "object",
-      "properties": {
-        "empty": {
-          "type": "boolean"
-        },
-        "model": {
-          "type": "object"
-        },
-        "modelMap": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object"
-          }
-        },
-        "reference": {
-          "type": "boolean"
-        },
-        "status": {
-          "type": "string",
-          "enum": [
-            "ACCEPTED",
-            "ALREADY_REPORTED",
-            "BAD_GATEWAY",
-            "BAD_REQUEST",
-            "BANDWIDTH_LIMIT_EXCEEDED",
-            "CHECKPOINT",
-            "CONFLICT",
-            "CONTINUE",
-            "CREATED",
-            "DESTINATION_LOCKED",
-            "EXPECTATION_FAILED",
-            "FAILED_DEPENDENCY",
-            "FORBIDDEN",
-            "FOUND",
-            "GATEWAY_TIMEOUT",
-            "GONE",
-            "HTTP_VERSION_NOT_SUPPORTED",
-            "IM_USED",
-            "INSUFFICIENT_SPACE_ON_RESOURCE",
-            "INSUFFICIENT_STORAGE",
-            "INTERNAL_SERVER_ERROR",
-            "I_AM_A_TEAPOT",
-            "LENGTH_REQUIRED",
-            "LOCKED",
-            "LOOP_DETECTED",
-            "METHOD_FAILURE",
-            "METHOD_NOT_ALLOWED",
-            "MOVED_PERMANENTLY",
-            "MOVED_TEMPORARILY",
-            "MULTIPLE_CHOICES",
-            "MULTI_STATUS",
-            "NETWORK_AUTHENTICATION_REQUIRED",
-            "NON_AUTHORITATIVE_INFORMATION",
-            "NOT_ACCEPTABLE",
-            "NOT_EXTENDED",
-            "NOT_FOUND",
-            "NOT_IMPLEMENTED",
-            "NOT_MODIFIED",
-            "NO_CONTENT",
-            "OK",
-            "PARTIAL_CONTENT",
-            "PAYLOAD_TOO_LARGE",
-            "PAYMENT_REQUIRED",
-            "PERMANENT_REDIRECT",
-            "PRECONDITION_FAILED",
-            "PRECONDITION_REQUIRED",
-            "PROCESSING",
-            "PROXY_AUTHENTICATION_REQUIRED",
-            "REQUESTED_RANGE_NOT_SATISFIABLE",
-            "REQUEST_ENTITY_TOO_LARGE",
-            "REQUEST_HEADER_FIELDS_TOO_LARGE",
-            "REQUEST_TIMEOUT",
-            "REQUEST_URI_TOO_LONG",
-            "RESET_CONTENT",
-            "SEE_OTHER",
-            "SERVICE_UNAVAILABLE",
-            "SWITCHING_PROTOCOLS",
-            "TEMPORARY_REDIRECT",
-            "TOO_EARLY",
-            "TOO_MANY_REQUESTS",
-            "UNAUTHORIZED",
-            "UNAVAILABLE_FOR_LEGAL_REASONS",
-            "UNPROCESSABLE_ENTITY",
-            "UNSUPPORTED_MEDIA_TYPE",
-            "UPGRADE_REQUIRED",
-            "URI_TOO_LONG",
-            "USE_PROXY",
-            "VARIANT_ALSO_NEGOTIATES"
-          ]
-        },
-        "view": {
-          "$ref": "#/definitions/View"
-        },
-        "viewName": {
-          "type": "string"
-        }
-      },
-      "title": "ModelAndView"
-    },
-    "RealWorldDto": {
-      "type": "object",
-      "properties": {
-        "humans": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "$ref": "#/definitions/HumanDto"
+  "components": {
+    "schemas": {
+      "Distributor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mood": {
+            "type": "string",
+            "enum": [
+              "GOOD",
+              "BAD"
+            ]
+          },
+          "distributorSkills": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DistributorSkill"
+            }
           }
         }
       },
-      "title": "RealWorldDto"
-    },
-    "View": {
-      "type": "object",
-      "properties": {
-        "contentType": {
-          "type": "string"
+      "DistributorSkill": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "requiredScreams": {
+            "type": "integer",
+            "format": "int32"
+          }
         }
       },
-      "title": "View"
-    },
-    "WorldResp": {
-      "type": "object",
-      "properties": {
-        "distributionLayer": {
-          "$ref": "#/definitions/DistributionLayerDto"
-        },
-        "hell": {
-          "$ref": "#/definitions/HellDto"
-        },
-        "name": {
-          "type": "string"
-        },
-        "realWorld": {
-          "$ref": "#/definitions/RealWorldDto"
-        },
-        "year": {
-          "type": "integer",
-          "format": "int32"
+      "DistributionCommittee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estimationError": {
+            "type": "number"
+          },
+          "distributors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Distributor"
+            }
+          }
         }
       },
-      "title": "WorldResp"
+      "DemonDto": {
+        "type": "object",
+        "properties": {
+          "agesLeftInHell": {
+            "type": "number"
+          }
+        }
+      },
+      "DistributionLayerDto": {
+        "type": "object",
+        "properties": {
+          "screamsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "humans": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HumanDto"
+            }
+          },
+          "distributionCommittees": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DistributionCommittee"
+            }
+          }
+        }
+      },
+      "HellDto": {
+        "type": "object",
+        "properties": {
+          "producedScreams": {
+            "type": "number"
+          },
+          "humans": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HumanDto"
+            }
+          },
+          "demons": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DemonDto"
+            }
+          }
+        }
+      },
+      "HumanDto": {
+        "type": "object",
+        "properties": {
+          "sex": {
+            "type": "string",
+            "enum": [
+              "MALE",
+              "FEMALE"
+            ]
+          }
+        }
+      },
+      "RealWorldDto": {
+        "type": "object",
+        "properties": {
+          "humans": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HumanDto"
+            }
+          }
+        }
+      },
+      "WorldResp": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "realWorld": {
+            "$ref": "#/components/schemas/RealWorldDto"
+          },
+          "distributionLayer": {
+            "$ref": "#/components/schemas/DistributionLayerDto"
+          },
+          "hell": {
+            "$ref": "#/components/schemas/HellDto"
+          }
+        }
+      }
     }
   }
 }

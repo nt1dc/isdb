@@ -2,8 +2,6 @@ package com.example.distributed_system.controllers;
 
 import com.example.distributed_system.dto.WorldResp;
 import com.example.distributed_system.service.WorldService;
-import io.swagger.models.auth.In;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

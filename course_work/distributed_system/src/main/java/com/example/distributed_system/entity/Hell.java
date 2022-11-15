@@ -15,7 +15,14 @@ import java.util.Set;
 @Setter
 public class Hell {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "hell_id_seq"
+    )
+    @SequenceGenerator(
+            name = "hell_id_seq",
+            allocationSize = 1
+    )
     @Column(name = "id", nullable = false)
     private Integer id;
 

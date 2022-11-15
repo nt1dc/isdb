@@ -13,7 +13,14 @@ import java.util.Set;
 @Table(name = "distribution_layer")
 public class DistributionLayer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "distribution_layer_id_seq"
+    )
+    @SequenceGenerator(
+            name = "distribution_layer_id_seq",
+            allocationSize = 1
+    )
     @Column(name = "id", nullable = false)
     private Integer id;
 

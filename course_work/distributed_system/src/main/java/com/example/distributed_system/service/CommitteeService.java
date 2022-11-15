@@ -15,14 +15,15 @@ public class CommitteeService {
     @Autowired
     private DistributorRepository distributorRepository;
 
-    public DistributionCommittee addDistributor(Integer committeeId, Distributor distributor) {
+    public void addDistributor(Integer committeeId, Distributor distributor) {
         DistributionCommittee distributionCommittee = committeeRepository.findById(committeeId).orElseThrow();
         distributor.setDistributionCommittee(distributionCommittee);
         distributorRepository.save(distributor);
-        return distributionCommittee;
+
     }
 
-    public DistributionCommittee findCommittee(Integer committeeId) {
+
+    public DistributionCommittee findDistributionCommittee(Integer committeeId) {
         return committeeRepository.findById(committeeId).orElseThrow();
     }
 }

@@ -12,7 +12,14 @@ import javax.persistence.*;
 @Table(name = "distributor_skill")
 public class DistributorSkill {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "distributor_skill_id_seq"
+    )
+    @SequenceGenerator(
+            name = "distributor_skill_id_seq",
+            allocationSize = 1
+    )
     @Column(name = "id", nullable = false)
     private Integer id;
 

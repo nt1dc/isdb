@@ -16,7 +16,14 @@ import java.util.Set;
 @Table(name = "demon")
 public class Demon {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "demon_id_seq"
+    )
+    @SequenceGenerator(
+            name = "demon_id_seq",
+            allocationSize = 1
+    )
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -34,7 +41,7 @@ public class Demon {
     @JoinTable(
             name = "demon_demon_specialisation",
             joinColumns = @JoinColumn(name = "demon_id"),
-            inverseJoinColumns = @JoinColumn(name = "demon_specialisation_id"))
+            inverseJoinColumns = @JoinColumn(name = "demon_specialisation"))
     private Set<DemonSpecialisation> demonDemonSpecialisations = new LinkedHashSet<>();
 
     public Demon(Integer agesLeftInHell, Set<DemonSpecialisation> demonDemonSpecialisations) {

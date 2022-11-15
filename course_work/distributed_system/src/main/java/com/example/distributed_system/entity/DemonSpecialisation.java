@@ -1,8 +1,6 @@
 package com.example.distributed_system.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,21 +14,34 @@ import java.util.Set;
 @Table(name = "demon_specialisation")
 public class DemonSpecialisation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "demon_specialisation_id_seq"
+    )
+    @SequenceGenerator(
+            name = "demon_specialisation_id_seq",
+            allocationSize = 1
+    )
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Lob
     @Column(name = "name")
     private String name;
 
     @Column(name = "power")
-    private Long power;
+    private Integer power;
 
     @ManyToMany(mappedBy = "demonDemonSpecialisations")
     private Set<Demon> demons = new LinkedHashSet<>();
 
-    public DemonSpecialisation(String name, Long power) {
+    public DemonSpecialisation(Integer id, String name, Integer power, Set<Demon> demons) {
+        this.id = id;
+        this.name = name;
+        this.power = power;
+        this.demons = demons;
+    }
+
+    public DemonSpecialisation(String name, Integer power) {
         this.name = name;
         this.power = power;
     }

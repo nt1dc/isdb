@@ -13,8 +13,8 @@ import java.util.Set;
 public class DemonGenerator {
     public static Demon generate(Human human) {
         List<DemonSpecialisation> demonSpecialisations = new ArrayList<>();
-        demonSpecialisations.add(new DemonSpecialisation("Веб", 15L));
-        demonSpecialisations.add(new DemonSpecialisation("ОПД", 10L));
+        demonSpecialisations.add(new DemonSpecialisation("Веб", 15));
+        demonSpecialisations.add(new DemonSpecialisation("ОПД", 10));
         var agesLeft = 100 - human.getNumberOfGoodDeeds();
         var specialisation = demonSpecialisations.get(new Random().nextInt(demonSpecialisations.size()));
         return new Demon(agesLeft, Set.of(specialisation));

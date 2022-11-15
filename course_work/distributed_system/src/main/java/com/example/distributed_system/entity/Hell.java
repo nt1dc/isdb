@@ -2,6 +2,7 @@ package com.example.distributed_system.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,7 +20,7 @@ public class Hell {
     private Integer id;
 
     @Column(name = "produced_screams")
-    private BigDecimal producedScreams;
+    private Long producedScreams;
 
     @OneToMany(mappedBy = "hell")
     private Set<Human> humans = new LinkedHashSet<>();
@@ -29,6 +30,5 @@ public class Hell {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "hell")
     private World world;
-
 
 }

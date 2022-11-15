@@ -27,14 +27,14 @@ VALUES (1, 'СПРОСИТЬ МОДЕЛЬ ОСИ', 7),
        (2, 'ОТЦЕНТРОВАТЬ ДИВ', 10),
        (3, 'МИКРО ИНФАРКТ', 99);
 INSERT INTO demon_demon_specialisation
-VALUES (1, 1, 1),
-       (2, 2, 1),
-       (3, 3, 2);
+VALUES (1, 1),
+       (2, 1),
+       (3, 2);
 INSERT INTO human
 VALUES (1, 1, null, null, 20, 'Dima', 'Antonov', 'я русский', 1, 100, 1),
        (2, null, 1, null, 20, 'Семен', 'Мокров', 'я русский', 5, 3, 1),
        (3, null, null, 1, 666, 'Евгений', 'Апоц', 'я русский', 228, 666, 1);
 INSERT INTO demon_human
-VALUES (1, 3, 1),
-       (2, 3, 2),
-       (3, 2, 2);
+VALUES (3, 1),
+       (3, 2),
+       (2, 2);

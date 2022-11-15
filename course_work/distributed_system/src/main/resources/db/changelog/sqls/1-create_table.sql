@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS demon_specialisation
 );
 CREATE TABLE IF NOT EXISTS demon_demon_specialisation
 (
-    id                   SERIAL PRIMARY KEY NOT NULL,
     demon_specialisation INT REFERENCES demon_specialisation,
     demon_id             INt REFERENCES demon
 );
@@ -95,7 +94,6 @@ CREATE TABLE IF NOT EXISTS demon_demon_specialisation
 
 CREATE TABLE IF NOT EXISTS demon_human
 (
-    id       SERIAL PRIMARY KEY NOT NULL,
     human_id INT REFERENCES human,
     demon_id INt REFERENCES demon
 );

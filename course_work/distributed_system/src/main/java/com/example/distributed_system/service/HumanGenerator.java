@@ -10,10 +10,10 @@ import java.util.Random;
 
 public class HumanGenerator {
     public static List<Human> generate(int count, World world) {
-        String[] namesArr = {"Sasha", "Zhenya", "Sam"};
-        String[] lastNameArr = {"Antonovich", "Mokrovich"};
-        String[] nationalityArr = {"грузин", "чечен", "айзер"};
-        Sex[] sexArr = Sex.values();
+        var namesArr = new String[]{"Sasha", "Zhenya", "Sam"};
+        var lastNameArr = new String[]{"Antonovich", "Mokrovich"};
+        var nationalityArr = new String[]{"грузин", "чечен", "айзер"};
+        var sexArr = Sex.values();
         List<Human> humans = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             String name = namesArr[new Random().nextInt(namesArr.length)];

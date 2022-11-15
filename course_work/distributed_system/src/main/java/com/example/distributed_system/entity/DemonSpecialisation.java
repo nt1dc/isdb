@@ -1,10 +1,17 @@
 package com.example.distributed_system.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "demon_specialisation")
 public class DemonSpecialisation {
@@ -18,41 +25,13 @@ public class DemonSpecialisation {
     private String name;
 
     @Column(name = "power")
-    private BigDecimal power;
+    private Long power;
 
-    @OneToMany(mappedBy = "demonSpecialisation")
-    private Set<DemonDemonSpecialisation> demonDemonSpecialisations = new LinkedHashSet<>();
+    @ManyToMany(mappedBy = "demonDemonSpecialisations")
+    private Set<Demon> demons = new LinkedHashSet<>();
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public DemonSpecialisation(String name, Long power) {
         this.name = name;
-    }
-
-    public BigDecimal getPower() {
-        return power;
-    }
-
-    public void setPower(BigDecimal power) {
         this.power = power;
     }
-
-    public Set<DemonDemonSpecialisation> getDemonDemonSpecialisations() {
-        return demonDemonSpecialisations;
-    }
-
-    public void setDemonDemonSpecialisations(Set<DemonDemonSpecialisation> demonDemonSpecialisations) {
-        this.demonDemonSpecialisations = demonDemonSpecialisations;
-    }
-
 }

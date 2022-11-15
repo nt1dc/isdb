@@ -50,8 +50,12 @@ public class Human {
     @Column(name = "number_of_righteous_deeds", nullable = false)
     private Integer numberOfRighteousDeeds = 0;
 
-    @OneToMany(mappedBy = "human")
-    private Set<DemonHuman> demonHumen = new LinkedHashSet<>();
+    @ManyToMany()
+    @JoinTable(
+            name = "demon_human",
+            joinColumns = @JoinColumn(name = "human_id"),
+            inverseJoinColumns = @JoinColumn(name = "demon_id"))
+    private Set<Demon> demonHumen = new LinkedHashSet<>();
     @Enumerated
     private Sex sex;
 

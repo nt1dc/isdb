@@ -25,12 +25,20 @@ public class Demon {
     private Hell hell;
 
     @Column(name = "ages_left_in_hell")
-    private BigDecimal agesLeftInHell;
+    private Integer agesLeftInHell;
 
-    @OneToMany(mappedBy = "demon")
-    private Set<DemonHuman> demonHumen = new LinkedHashSet<>();
+    @ManyToMany(mappedBy = "demonHumen")
+    private Set<Human> demonHumen = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "demon")
-    private Set<DemonDemonSpecialisation> demonDemonSpecialisations = new LinkedHashSet<>();
+    @ManyToMany()
+    @JoinTable(
+            name = "demon_demon_specialisation",
+            joinColumns = @JoinColumn(name = "demon_id"),
+            inverseJoinColumns = @JoinColumn(name = "demon_specialisation_id"))
+    private Set<DemonSpecialisation> demonDemonSpecialisations = new LinkedHashSet<>();
 
+    public Demon(Integer agesLeftInHell, Set<DemonSpecialisation> demonDemonSpecialisations) {
+        this.agesLeftInHell = agesLeftInHell;
+        this.demonDemonSpecialisations = demonDemonSpecialisations;
+    }
 }

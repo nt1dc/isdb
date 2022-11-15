@@ -13,5 +13,5 @@ import java.util.Set;
 @NoArgsConstructor
 public class DistributionCommitteeDto {
     private BigDecimal estimationError;
-    private Set<DistributorDto> distributors;
+    private Set<Distributor> distributors;
 }

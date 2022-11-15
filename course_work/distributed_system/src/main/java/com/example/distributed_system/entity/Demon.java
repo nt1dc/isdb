@@ -1,10 +1,17 @@
 package com.example.distributed_system.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "demon")
 public class Demon {
@@ -25,45 +32,5 @@ public class Demon {
 
     @OneToMany(mappedBy = "demon")
     private Set<DemonDemonSpecialisation> demonDemonSpecialisations = new LinkedHashSet<>();
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Hell getHell() {
-        return hell;
-    }
-
-    public void setHell(Hell hell) {
-        this.hell = hell;
-    }
-
-    public BigDecimal getAgesLeftInHell() {
-        return agesLeftInHell;
-    }
-
-    public void setAgesLeftInHell(BigDecimal agesLeftInHell) {
-        this.agesLeftInHell = agesLeftInHell;
-    }
-
-    public Set<DemonHuman> getDemonHumen() {
-        return demonHumen;
-    }
-
-    public void setDemonHumen(Set<DemonHuman> demonHumen) {
-        this.demonHumen = demonHumen;
-    }
-
-    public Set<DemonDemonSpecialisation> getDemonDemonSpecialisations() {
-        return demonDemonSpecialisations;
-    }
-
-    public void setDemonDemonSpecialisations(Set<DemonDemonSpecialisation> demonDemonSpecialisations) {
-        this.demonDemonSpecialisations = demonDemonSpecialisations;
-    }
 
 }

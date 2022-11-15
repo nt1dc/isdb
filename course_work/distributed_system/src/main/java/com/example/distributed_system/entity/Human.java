@@ -1,6 +1,7 @@
 package com.example.distributed_system.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "human")
+@NoArgsConstructor
 public class Human {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,14 +45,22 @@ public class Human {
     private String nationality;
 
     @Column(name = "number_of_good_deeds", nullable = false)
-    private Integer numberOfGoodDeeds;
+    private Integer numberOfGoodDeeds = 0;
 
     @Column(name = "number_of_righteous_deeds", nullable = false)
-    private Integer numberOfRighteousDeeds;
+    private Integer numberOfRighteousDeeds = 0;
 
     @OneToMany(mappedBy = "human")
     private Set<DemonHuman> demonHumen = new LinkedHashSet<>();
     @Enumerated
     private Sex sex;
 
+    public Human(Integer age, String name, String lastName, String nationality, Sex sex, RealWorld realWorld) {
+        this.age = age;
+        this.name = name;
+        this.lastName = lastName;
+        this.nationality = nationality;
+        this.sex = sex;
+        this.realWorld = realWorld;
+    }
 }

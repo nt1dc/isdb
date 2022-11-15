@@ -14,11 +14,5 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class HumanDto implements Serializable {
-    private  Integer age;
-    private String name;
-    private String lastName;
-    private String nationality;
-    private Integer numberOfGoodDeeds;
-    private Integer numberOfRighteousDeeds;
     private Sex sex;
 }

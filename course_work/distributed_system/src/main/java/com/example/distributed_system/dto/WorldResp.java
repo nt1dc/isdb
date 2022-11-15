@@ -12,8 +12,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class WorldResp implements Serializable {
     private String name;
+    private Integer year;
     private RealWorldDto realWorld;
     private DistributionLayerDto distributionLayer;
     private HellDto hell;
-    private Integer year;
 }

@@ -11,5 +11,5 @@ import java.util.Set;
 public class DistributionLayerDto {
     private Integer screamsCount;
     private Set<HumanDto> humans;
-    private Set<DistributionCommitteeDto> distributionCommittees;
+    private Set<DistributionCommittee> distributionCommittees;
 }

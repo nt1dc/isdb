@@ -1,5 +1,6 @@
 package com.example.distributed_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class DistributorSkill {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "distributor_id")
     private Distributor distributor;
@@ -24,6 +26,5 @@ public class DistributorSkill {
 
     @Column(name = "required_screams")
     private Integer requiredScreams;
-
 
 }

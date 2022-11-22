@@ -8,6 +8,8 @@ import com.example.distributed_system.service.DistributorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.function.Function;
+
 @RestController
 @RequestMapping("/committee")
 public class CommitteeController {
@@ -24,6 +26,7 @@ public class CommitteeController {
     @DeleteMapping("/{committeeId}/{distributorID}")
     public void deleteDistributor(@PathVariable Integer distributorID, @PathVariable Integer committeeId) {
         distributorService.deleteDistributor(committeeId,distributorID);
+
     }
 
     @GetMapping("{committeeId}")

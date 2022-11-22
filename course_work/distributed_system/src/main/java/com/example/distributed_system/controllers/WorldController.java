@@ -27,8 +27,8 @@ public class WorldController {
     }
 
     @GetMapping("/{worldId}/amnesty")
-    public WorldResp amnestyStrat(@PathVariable Integer worldId) {
-        return worldService.amnestyStart(worldId);
+    public void amnestyStrat(@PathVariable Integer worldId) {
+        worldService.amnestyStart(worldId);
     }
 
     @GetMapping("/{worldId}/nextYear")

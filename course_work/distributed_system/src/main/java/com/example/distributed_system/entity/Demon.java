@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -48,5 +49,10 @@ public class Demon {
         this.agesLeftInHell = agesLeftInHell;
         this.demonHumen = demonHumen;
         this.demonDemonSpecialisations = demonDemonSpecialisations;
+    }
+
+    public void clearRelations() {
+        setDemonHumen(new HashSet<>());
+        setDemonHumen(new HashSet<>());
     }
 }

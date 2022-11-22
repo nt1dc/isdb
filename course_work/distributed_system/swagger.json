@@ -183,14 +183,7 @@
             }
           },
           "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/WorldResp"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }

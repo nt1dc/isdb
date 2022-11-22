@@ -28,7 +28,7 @@ public class Demon {
     @Column(name = "ages_left_in_hell")
     private Integer agesLeftInHell;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "demon_human", joinColumns = @JoinColumn(name = "demon_id"), inverseJoinColumns = @JoinColumn(name = "human_id"))
     private Set<Human> demonHumen = new LinkedHashSet<>();
 
@@ -36,9 +36,10 @@ public class Demon {
     @JoinTable(name = "demon_demon_specialisation", joinColumns = @JoinColumn(name = "demon_id"), inverseJoinColumns = @JoinColumn(name = "demon_specialisation"))
     private Set<DemonSpecialisation> demonDemonSpecialisations = new LinkedHashSet<>();
 
-    public Demon(Integer agesLeftInHell, Set<DemonSpecialisation> demonDemonSpecialisations) {
+    public Demon(Integer agesLeftInHell, Set<DemonSpecialisation> demonDemonSpecialisations, Hell hell) {
         this.agesLeftInHell = agesLeftInHell;
         this.demonDemonSpecialisations = demonDemonSpecialisations;
+        this.hell = hell;
     }
 
     public Demon(Integer id, Hell hell, Integer agesLeftInHell, Set<Human> demonHumen, Set<DemonSpecialisation> demonDemonSpecialisations) {

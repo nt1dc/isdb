@@ -32,8 +32,8 @@ public class WorldController {
     }
 
     @GetMapping("/{worldId}/nextYear")
-    public WorldResp nextYear(@PathVariable Integer worldId) {
-        return worldService.nextYear(worldId);
+    public void nextYear(@PathVariable Integer worldId) {
+        worldService.nextYear(worldId);
     }
 
 }

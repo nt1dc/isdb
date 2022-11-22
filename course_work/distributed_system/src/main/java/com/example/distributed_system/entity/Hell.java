@@ -29,10 +29,10 @@ public class Hell {
     @Column(name = "produced_screams")
     private Long producedScreams;
 
-    @OneToMany(mappedBy = "hell", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hell", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Human> humans = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "hell", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "hell", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Demon> demons = new LinkedHashSet<>();
 
     @OneToOne(mappedBy = "hell")

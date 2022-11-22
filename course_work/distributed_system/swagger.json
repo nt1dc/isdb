@@ -40,14 +40,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/DistributionCommittee"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -70,6 +63,16 @@
           }
         ],
         "responses": {
+          "418": {
+            "description": "I'm a teapot",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "200": {
             "description": "OK",
             "content": {
@@ -101,15 +104,18 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "418": {
+            "description": "I'm a teapot",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorldResp"
+                  "type": "string"
                 }
               }
             }
+          },
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -132,15 +138,18 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
+          "418": {
+            "description": "I'm a teapot",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorldResp"
+                  "type": "string"
                 }
               }
             }
+          },
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -163,6 +172,16 @@
           }
         ],
         "responses": {
+          "418": {
+            "description": "I'm a teapot",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "200": {
             "description": "OK",
             "content": {
@@ -197,24 +216,15 @@
         }
       }
     },
-    "/committee/{committeeId}/{distributorID}": {
-      "delete": {
+    "/committee/{committeeId}": {
+      "get": {
         "tags": [
           "committee-controller"
         ],
-        "operationId": "deleteDistributor",
+        "operationId": "getDistributionCommittee",
         "parameters": [
           {
             "name": "committeeId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "distributorID",
             "in": "path",
             "required": true,
             "schema": {
@@ -233,6 +243,39 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/committee/{committeeId}/{distributorID}": {
+      "delete": {
+        "tags": [
+          "committee-controller"
+        ],
+        "operationId": "deleteDistributor",
+        "parameters": [
+          {
+            "name": "distributorID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "committeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -283,6 +326,14 @@
           }
         }
       },
+      "DemonDto": {
+        "type": "object",
+        "properties": {
+          "agesLeftInHell": {
+            "type": "number"
+          }
+        }
+      },
       "DistributionCommittee": {
         "type": "object",
         "properties": {
@@ -299,14 +350,6 @@
             "items": {
               "$ref": "#/components/schemas/Distributor"
             }
-          }
-        }
-      },
-      "DemonDto": {
-        "type": "object",
-        "properties": {
-          "agesLeftInHell": {
-            "type": "number"
           }
         }
       },

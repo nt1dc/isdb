@@ -13,10 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class CommitteeController {
     @Autowired
     private CommitteeService committeeService;
+    @Autowired
+    private DistributorService distributorService;
 
     @PostMapping("/{committeeId}/distributor")
     public void addDistributor(@RequestBody Distributor distributor, @PathVariable Integer committeeId) {
         committeeService.addDistributor(committeeId, distributor);
+    }
+
+    @DeleteMapping("/{committeeId}/{distributorID}")
+    public void deleteDistributor(@PathVariable Integer distributorID, @PathVariable Integer committeeId) {
+        distributorService.deleteDistributor(committeeId,distributorID);
     }
 
     @GetMapping("{committeeId}")

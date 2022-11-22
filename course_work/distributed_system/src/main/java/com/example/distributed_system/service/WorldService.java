@@ -39,7 +39,6 @@ public class WorldService {
         return map;
     }
 
-    // TODO: 11/22/2022 mb doesnt work )
     public void genocideStart(Integer worldId) {
         World world = worldRepository.findById(worldId).orElseThrow();
         world.getRealWorld().getHumans().forEach(human -> {
@@ -47,7 +46,6 @@ public class WorldService {
             human.setRealWorld(null);
         });
         worldRepository.save(world);
-        WorldResp worldResp = modelMapper.map(world, WorldResp.class);
     }
 
     public WorldResp amnestyStart(Integer worldID) {

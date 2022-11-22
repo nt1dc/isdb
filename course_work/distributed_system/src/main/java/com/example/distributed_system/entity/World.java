@@ -25,20 +25,18 @@ public class World {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "real_world_id", nullable = false)
     private RealWorld realWorld;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "hell_id", nullable = false)
     private Hell hell;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "distribution_layer_id", nullable = false)
     private DistributionLayer distributionLayer;
 
     @Column(name = "year", nullable = false)
     private Integer year;
-
-
 }

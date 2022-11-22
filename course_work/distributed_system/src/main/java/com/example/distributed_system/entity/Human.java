@@ -22,19 +22,20 @@ public class Human {
     @SequenceGenerator(
             name = "human_id_seq",
             allocationSize = 1
+            , initialValue = 5
     )
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "real_world_id")
     private RealWorld realWorld;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "distribution_layer_id")
     private DistributionLayer distributionLayer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "hell_id")
     private Hell hell;
 
@@ -57,11 +58,7 @@ public class Human {
     @Column(name = "number_of_righteous_deeds", nullable = false)
     private Integer numberOfRighteousDeeds = 0;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "demon_human",
-            joinColumns = @JoinColumn(name = "human_id"),
-            inverseJoinColumns = @JoinColumn(name = "demon_id"))
+    @ManyToMany(mappedBy = "demonHumen")
     private Set<Demon> demonHumen = new LinkedHashSet<>();
     @Enumerated
     private Sex sex;

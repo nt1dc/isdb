@@ -24,10 +24,10 @@ public class RealWorld {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToMany(mappedBy = "realWorld")
+    @OneToMany(mappedBy = "realWorld", cascade = CascadeType.ALL)
     private Set<Human> humans = new LinkedHashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "realWorld")
+    @OneToOne(mappedBy = "realWorld")
     private World world;
 
 

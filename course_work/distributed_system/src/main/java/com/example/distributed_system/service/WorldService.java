@@ -4,26 +4,33 @@ import com.example.distributed_system.dto.WorldResp;
 import com.example.distributed_system.entity.*;
 import com.example.distributed_system.exceptions.GameOverException;
 import com.example.distributed_system.repository.DemonRepository;
+import com.example.distributed_system.repository.HellRepository;
+import com.example.distributed_system.repository.RealWorldRepository;
 import com.example.distributed_system.repository.WorldRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import javax.transaction.Transactional;
+import java.util.*;
 
 @Service
+@Transactional
 public class WorldService {
 
     private final WorldRepository worldRepository;
     private final DemonRepository demonRepository;
 
     private final ModelMapper modelMapper;
+    private final RealWorldRepository realWorldRepository;
+    private final HellRepository hellRepository;
 
-    public WorldService(WorldRepository worldRepository, DemonRepository demonRepository, ModelMapper modelMapper) {
+
+    public WorldService(WorldRepository worldRepository, DemonRepository demonRepository, ModelMapper modelMapper, RealWorldRepository realWorldRepository, HellRepository hellRepository) {
         this.worldRepository = worldRepository;
         this.demonRepository = demonRepository;
         this.modelMapper = modelMapper;
+        this.realWorldRepository = realWorldRepository;
+        this.hellRepository = hellRepository;
     }
 
     public WorldResp findWorldById(Integer id) {
@@ -32,7 +39,8 @@ public class WorldService {
         return map;
     }
 
-    public WorldResp genocideStart(Integer worldId) {
+    // TODO: 11/22/2022 mb doesnt work )
+    public void genocideStart(Integer worldId) {
         World world = worldRepository.findById(worldId).orElseThrow();
         world.getRealWorld().getHumans().forEach(human -> {
             human.setDistributionLayer(world.getDistributionLayer());
@@ -40,26 +48,29 @@ public class WorldService {
         });
         worldRepository.save(world);
         WorldResp worldResp = modelMapper.map(world, WorldResp.class);
-        return worldResp;
     }
 
     public WorldResp amnestyStart(Integer worldID) {
         World world = worldRepository.findById(worldID).orElseThrow();
         int size = world.getHell().getDemons().size();
+        world.getHell().getDemons().forEach(demon -> {
+            demon.setDemonHumen(new HashSet<>());
+            demon.setDemonDemonSpecialisations(new HashSet<>());
+        });
         world.getHell().getDemons().clear();
-        List<Human> humans = HumanGenerator.generate(size, world);
-        world.getRealWorld().getHumans().addAll(humans);
+        Set<Human> generate = HumanGenerator.generate(size, world);
+        world.getRealWorld().getHumans().addAll(generate);
         worldRepository.save(world);
         return modelMapper.map(world, WorldResp.class);
     }
 
+    // TODO: 11/22/2022 mb doesnt work )
     public WorldResp nextYear(Integer worldId) {
         World world = worldRepository.findById(worldId).orElseThrow();
         RealWorld realWorld = world.getRealWorld();
         DistributionLayer distributionLayer = world.getDistributionLayer();
         Hell hell = world.getHell();
-
-//      people to DistributionLayer(
+//      people to DistributionLayer
         realWorld.getHumans().forEach(human -> {
             human.setAge(human.getAge() + 1);
             human.setNumberOfGoodDeeds(human.getNumberOfGoodDeeds() + new Random().nextInt(10 + 1));
@@ -74,7 +85,7 @@ public class WorldService {
 //      check game over
         var totalRequiredScreams = distributionLayer.getDistributionCommittees().stream().mapToInt(distributionCommittee -> distributionCommittee.getDistributors().stream().mapToInt(distributor -> distributor.getDistributorSkills().stream().mapToInt(DistributorSkill::getRequiredScreams).sum()).sum()).sum();
 
-        var hellProducedScreams = hell.getDemons().stream().mapToLong(demon -> demon.getDemonDemonSpecialisations().stream().mapToLong(d -> d.getPower() * demon.getDemonHumen().size()).sum()).sum();
+        var hellProducedScreams = hell.getDemons().stream().mapToLong(demon -> demon.getDemonDemonSpecialisations().stream().mapToInt(d -> d.getPower() * demon.getDemonHumen().size()).sum()).sum();
         hell.setProducedScreams(hellProducedScreams);
 
         var totalScreams = distributionLayer.getScreamsCount() + hell.getProducedScreams();
@@ -96,7 +107,7 @@ public class WorldService {
         hell.getDemons().forEach(demon -> demon.setAgesLeftInHell(demon.getAgesLeftInHell() - 1));
         List<Demon> demons = hell.getDemons().stream().filter(demon -> demon.getAgesLeftInHell() == 0).toList();
         demonRepository.deleteAll(demons);
-        List<Human> newPeople = HumanGenerator.generate(demons.size(), world);
+        Set<Human> newPeople = HumanGenerator.generate(demons.size(), world);
         realWorld.getHumans().addAll(newPeople);
 
         distributionLayer.getHumans().forEach(human -> {
@@ -116,7 +127,7 @@ public class WorldService {
 //        BurnNewPeople
         long femaleCount = realWorld.getHumans().stream().filter(human -> human.getAge() > 18 && human.getSex() == Sex.FEMALE).count();
         long maleCount = realWorld.getHumans().stream().filter(human -> human.getAge() > 18 && human.getSex() == Sex.MALE).count();
-        List<Human> burnedPeople = HumanGenerator.generate((int) Math.min(femaleCount, maleCount), world);
+        Set<Human> burnedPeople = HumanGenerator.generate((int) Math.min(femaleCount, maleCount), world);
         realWorld.getHumans().addAll(burnedPeople);
 
 

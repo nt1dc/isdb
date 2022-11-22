@@ -4,17 +4,15 @@ import com.example.distributed_system.entity.Human;
 import com.example.distributed_system.entity.Sex;
 import com.example.distributed_system.entity.World;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class HumanGenerator {
-    public static List<Human> generate(int count, World world) {
+    public static Set<Human> generate(int count, World world) {
         var namesArr = new String[]{"Sasha", "Zhenya", "Sam"};
         var lastNameArr = new String[]{"Antonovich", "Mokrovich"};
         var nationalityArr = new String[]{"грузин", "чечен", "айзер"};
         var sexArr = Sex.values();
-        List<Human> humans = new ArrayList<>();
+        Set<Human> humans = new HashSet<>();
         for (int i = 0; i < count; i++) {
             String name = namesArr[new Random().nextInt(namesArr.length)];
             String lastName = lastNameArr[new Random().nextInt(lastNameArr.length)];

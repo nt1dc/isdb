@@ -22,8 +22,8 @@ public class WorldController {
     }
 
     @GetMapping("/{worldId}/genocide")
-    public WorldResp genocideStart(@PathVariable Integer worldId) {
-        return worldService.genocideStart(worldId);
+    public void genocideStart(@PathVariable Integer worldId) {
+        worldService.genocideStart(worldId);
     }
 
     @GetMapping("/{worldId}/amnesty")

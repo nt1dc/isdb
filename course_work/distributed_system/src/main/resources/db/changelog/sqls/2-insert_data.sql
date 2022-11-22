@@ -30,11 +30,11 @@ INSERT INTO demon_demon_specialisation
 VALUES (1, 1),
        (2, 1),
        (3, 2);
-INSERT INTO human
-VALUES (1, 1, null, null, 20, 'Dima', 'Antonov', 'я русский', 1, 100, 1),
-       (2, null, 1, null, 20, 'Семен', 'Мокров', 'я русский', 5, 3, 1),
-       (3, null, null, 1, 666, 'Евгений', 'Апоц', 'я русский', 228, 666, 1);
-INSERT INTO demon_human
+INSERT INTO human (real_world_id, distribution_layer_id, hell_id, age, name, last_name, nationality,
+                   number_of_good_deeds, number_of_righteous_deeds, sex)
+VALUES (1, null, null, 20, 'Dima', 'Antonov', 'я русский', 1, 100, 1),
+       (null, 1, null, 20, 'Семен', 'Мокров', 'я русский', 5, 3, 1),
+       (null, null, 1, 666, 'Евгений', 'Апоц', 'я русский', 228, 666, 1);
+INSERT INTO demon_human (human_id, demon_id)
 VALUES (3, 1),
-       (3, 2),
-       (2, 2);
+       (2, 1);

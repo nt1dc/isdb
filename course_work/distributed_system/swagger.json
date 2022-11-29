@@ -6,20 +6,20 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080/",
+      "url": "http://localhost:8080",
       "description": "Generated server url"
     }
   ],
   "paths": {
-    "/committee/{committeeId}/distributor": {
+    "/distributor/{worldId}": {
       "post": {
         "tags": [
-          "committee-controller"
+          "distributor-controller"
         ],
         "operationId": "addDistributor",
         "parameters": [
           {
-            "name": "committeeId",
+            "name": "worldId",
             "in": "path",
             "required": true,
             "schema": {
@@ -209,55 +209,15 @@
         }
       }
     },
-    "/committee/{committeeId}": {
-      "get": {
-        "tags": [
-          "committee-controller"
-        ],
-        "operationId": "getDistributionCommittee",
-        "parameters": [
-          {
-            "name": "committeeId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/DistributionCommittee"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/committee/{committeeId}/{distributorID}": {
+    "/distributor/{distributorID}": {
       "delete": {
         "tags": [
-          "committee-controller"
+          "distributor-controller"
         ],
         "operationId": "deleteDistributor",
         "parameters": [
           {
             "name": "distributorID",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "committeeId",
             "in": "path",
             "required": true,
             "schema": {
@@ -394,12 +354,33 @@
       "HumanDto": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
           "sex": {
             "type": "string",
             "enum": [
               "MALE",
               "FEMALE"
             ]
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "numberOfGoodDeeds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfRighteousDeeds": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },

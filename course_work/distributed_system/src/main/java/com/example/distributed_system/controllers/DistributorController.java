@@ -8,24 +8,22 @@ import com.example.distributed_system.service.DistributorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.function.Function;
-
 @RestController
 @RequestMapping("/committee")
-public class CommitteeController {
+public class DistributorController {
     @Autowired
     private CommitteeService committeeService;
     @Autowired
     private DistributorService distributorService;
 
-    @PostMapping("/{committeeId}/distributor")
-    public void addDistributor(@RequestBody Distributor distributor, @PathVariable Integer committeeId) {
-        committeeService.addDistributor(committeeId, distributor);
+    @PostMapping("/{worldId}")
+    public void addDistributor(@RequestBody Distributor distributor, @PathVariable Integer worldId) {
+        distributorService.addDistributor(worldId, distributor);
     }
 
-    @DeleteMapping("/{committeeId}/{distributorID}")
-    public void deleteDistributor(@PathVariable Integer distributorID, @PathVariable Integer committeeId) {
-        distributorService.deleteDistributor(committeeId,distributorID);
+    @DeleteMapping("/{distributorID}")
+    public void deleteDistributor(@PathVariable Integer distributorID) {
+        distributorService.deleteDistributor(distributorID);
 
     }
 

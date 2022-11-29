@@ -12,15 +12,6 @@ public class CommitteeService {
 
     @Autowired
     private DistributionCommitteeRepository committeeRepository;
-    @Autowired
-    private DistributorRepository distributorRepository;
-
-    public void addDistributor(Integer committeeId, Distributor distributor) {
-        DistributionCommittee distributionCommittee = committeeRepository.findById(committeeId).orElseThrow();
-        distributor.setDistributionCommittee(distributionCommittee);
-        distributorRepository.save(distributor);
-
-    }
 
 
     public DistributionCommittee findDistributionCommittee(Integer committeeId) {

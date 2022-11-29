@@ -2,7 +2,6 @@ package com.example.distributed_system.service;
 
 import com.example.distributed_system.dto.WorldResp;
 import com.example.distributed_system.entity.*;
-import com.example.distributed_system.exceptions.GameOverException;
 import com.example.distributed_system.repository.WorldRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -59,13 +58,26 @@ public class WorldService {
         World world = worldRepository.findById(worldId).orElseThrow();
         peopleRoutine(world);
         peopleToDistributionLayer(world);
-        gameOverCheck(world);
+        boolean gameOver = gameOverCheck(world);
         humanToDemon(world);
         demonToHuman(world);
-        distributeHuman(world);
+        if (gameOver) evilDistribute(world);
+        else distributeHuman(world);
         burnNewHuman(world);
         worldRepository.save(world);
 
+    }
+
+    private void evilDistribute(World world) {
+        var hell = world.getHell();
+        var distributionLayer = world.getDistributionLayer();
+        for (Human human : distributionLayer.getHumans()) {
+            human.setHell(hell);
+            if (!hell.getDemons().isEmpty()) {
+                Demon demon1 = hell.getDemons().stream().min(Comparator.comparing(demon -> demon.getDemonHumen().size())).get();
+                demon1.getDemonHumen().add(human);
+            }
+        }
     }
 
     private void peopleRoutine(World world) {
@@ -87,7 +99,7 @@ public class WorldService {
         });
     }
 
-    private void gameOverCheck(World world) {
+    private boolean gameOverCheck(World world) {
 
         var distributionLayer = world.getDistributionLayer();
         var hell = world.getHell();
@@ -98,9 +110,7 @@ public class WorldService {
         hell.setProducedScreams(hellProducedScreams);
 
         var totalScreams = distributionLayer.getScreamsCount() + hell.getProducedScreams();
-        if (totalScreams < totalRequiredScreams) {
-            throw new GameOverException();
-        }
+        return totalScreams < totalRequiredScreams;
     }
 
     private void humanToDemon(World world) {

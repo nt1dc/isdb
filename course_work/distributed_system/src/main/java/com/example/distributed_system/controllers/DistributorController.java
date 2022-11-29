@@ -1,18 +1,14 @@
 package com.example.distributed_system.controllers;
 
 
-import com.example.distributed_system.entity.DistributionCommittee;
 import com.example.distributed_system.entity.Distributor;
-import com.example.distributed_system.service.CommitteeService;
 import com.example.distributed_system.service.DistributorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/committee")
+@RequestMapping("/distributor")
 public class DistributorController {
-    @Autowired
-    private CommitteeService committeeService;
     @Autowired
     private DistributorService distributorService;
 
@@ -27,8 +23,4 @@ public class DistributorController {
 
     }
 
-    @GetMapping("{committeeId}")
-    public DistributionCommittee getDistributionCommittee(@PathVariable Integer committeeId) {
-        return committeeService.findDistributionCommittee(committeeId);
-    }
 }

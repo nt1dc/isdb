@@ -73,6 +73,7 @@ public class WorldService {
         var distributionLayer = world.getDistributionLayer();
         for (Human human : distributionLayer.getHumans()) {
             human.setHell(hell);
+            human.setDistributionLayer(null);
             if (!hell.getDemons().isEmpty()) {
                 Demon demon1 = hell.getDemons().stream().min(Comparator.comparing(demon -> demon.getDemonHumen().size())).get();
                 demon1.getDemonHumen().add(human);

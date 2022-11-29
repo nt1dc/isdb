@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 
 /**
@@ -14,5 +15,18 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 public class HumanDto implements Serializable {
+
+    private String name;
+
+    private String lastName;
+
+    private Integer age;
+
     private Sex sex;
+
+    private String nationality;
+
+    private Integer numberOfGoodDeeds = 0;
+
+    private Integer numberOfRighteousDeeds = 0;
 }

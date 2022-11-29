@@ -9,7 +9,7 @@ import java.util.*;
 
 @Service
 public class HumanGenerator {
-    public  Set<Human> generate(int count, World world) {
+    public Set<Human> generate(int count, World world) {
         var namesArr = new String[]{"Sasha", "Zhenya", "Sam"};
         var lastNameArr = new String[]{"Antonovich", "Mokrovich"};
         var nationalityArr = new String[]{"грузин", "чечен", "айзер"};
@@ -19,7 +19,7 @@ public class HumanGenerator {
             String name = namesArr[new Random().nextInt(namesArr.length)];
             String lastName = lastNameArr[new Random().nextInt(lastNameArr.length)];
             String nationality = nationalityArr[new Random().nextInt(nationalityArr.length)];
-            int age = (int) (Math.random() * 30);
+            int age = (int) (Math.random() * 30) + 1;
             Sex sex = sexArr[new Random().nextInt(sexArr.length)];
             Human human = new Human(age, name, lastName, nationality, sex, world.getRealWorld());
             humans.add(human);

@@ -124,9 +124,9 @@ public class WorldService {
                 Demon generate = demonGenerator.generate(human, hell);
                 hell.getDemons().add(generate);
                 human.setDemonHumen(new HashSet<>());
-                world.getHell().getHumans().remove(human);
             }
         });
+        hell.getHumans().stream().filter(human -> human.getNumberOfRighteousDeeds() <= 0).toList().forEach(hell.getHumans()::remove);
     }
 
     private void demonToHuman(World world) {
@@ -137,7 +137,7 @@ public class WorldService {
         hellDemons.forEach(demon -> demon.setAgesLeftInHell(demon.getAgesLeftInHell() - 1));
         List<Demon> demonsToHumanList = hellDemons.stream().filter(demon -> demon.getAgesLeftInHell() <= 0).toList();
         demonsToHumanList.forEach(Demon::clearRelations);
-        hellDemons.removeAll(demonsToHumanList);
+        demonsToHumanList.forEach(hellDemons::remove);
         Set<Human> newPeople = humanGenerator.generate(demonsToHumanList.size(), world);
         realWorld.getHumans().addAll(newPeople);
     }

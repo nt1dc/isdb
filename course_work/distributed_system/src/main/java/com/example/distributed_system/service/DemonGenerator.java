@@ -11,15 +11,11 @@ import java.util.*;
 
 @Service
 public class DemonGenerator {
-    private final DemonSpecialisationRepository demonSpecialisationRepository;
-
-    public DemonGenerator(DemonSpecialisationRepository demonSpecialisationRepository) {
-        this.demonSpecialisationRepository = demonSpecialisationRepository;
-
-    }
 
     public Demon generate(Human human, Hell hell) {
-        List<DemonSpecialisation> demonSpecialisations = demonSpecialisationRepository.findAll();
+        List<DemonSpecialisation> demonSpecialisations = new ArrayList<>();
+        demonSpecialisations.add(new DemonSpecialisation("Веб", 15));
+        demonSpecialisations.add(new DemonSpecialisation("ОПД", 10));
         var agesLeft = 100 - human.getNumberOfGoodDeeds();
         var specialisation = demonSpecialisations.get(new Random().nextInt(demonSpecialisations.size()));
         Set<DemonSpecialisation> specialisations = new HashSet<>();

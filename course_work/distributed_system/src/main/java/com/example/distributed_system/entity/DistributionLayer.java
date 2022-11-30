@@ -30,7 +30,7 @@ public class DistributionLayer {
     @OneToMany(mappedBy = "distributionLayer")
     private Set<Human> humans = new LinkedHashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "distributionLayer")
+    @OneToOne(mappedBy = "distributionLayer")
     private World world;
 
     @OneToMany(mappedBy = "distributionLayer")

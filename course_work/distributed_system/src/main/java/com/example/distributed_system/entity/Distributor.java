@@ -27,7 +27,7 @@ public class Distributor {
     private Integer id;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "distribution_committee_id")
     private DistributionCommittee distributionCommittee;
 

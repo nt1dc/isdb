@@ -169,7 +169,8 @@ public class WorldService {
             if (human.getAge() > ageOfConsent) {
                 if (human.getSex() == Sex.FEMALE) {
                     femaleCount++;
-                } else {
+                }
+                if (human.getSex() == Sex.MALE) {
                     maleCount++;
                 }
             }

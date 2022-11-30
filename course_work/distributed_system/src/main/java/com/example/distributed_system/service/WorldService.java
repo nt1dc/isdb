@@ -106,6 +106,7 @@ public class WorldService {
         var hell = world.getHell();
 
         var totalRequiredScreams = distributionLayer.getDistributionCommittees().stream().mapToInt(distributionCommittee -> distributionCommittee.getDistributors().stream().mapToInt(distributor -> distributor.getDistributorSkills().stream().mapToInt(DistributorSkill::getRequiredScreams).sum()).sum()).sum();
+        distributionLayer.setScreamsCount(totalRequiredScreams);
 
         var hellProducedScreams = hell.getDemons().stream().
                 mapToLong(demon -> demon.getDemonDemonSpecialisations().stream().mapToInt(d -> d.getPower() * demon.getDemonHumen().size()).sum()).sum();

@@ -9,16 +9,16 @@ VALUES (1, 1);
 
 INSERT INTO world
 VALUES (1, 'BEST WORLD EVER', 1, 1, 1, 1);
-INSERT INTO distribution_committee
-VALUES (1, 1, 1);
-INSERT INTO distributor
-VALUES (1, 1, 27, 0),
-       (2, 1, 228, 0),
-       (3, 1, 666, 1);
-INSERT INTO distributor_skill
-VALUES (1, 1, 'ОСИ', 777),
-       (2, 1, 'ОПД', 1),
-       (3, 2, 'ВЕБ', 13);
+INSERT INTO distribution_committee (distribution_layer_id, estimation_error)
+VALUES (1, 1);
+INSERT INTO distributor (distribution_committee_id, age, mood)
+VALUES (1, 27, 0),
+       (1, 228, 0),
+       (1, 666, 1);
+INSERT INTO distributor_skill (distributor_id, name, required_screams)
+VALUES (1, 'ОСИ', 777),
+       (1, 'ОПД', 1),
+       (2, 'ВЕБ', 13);
 INSERT INTO demon (hell_id, ages_left_in_hell)
 VALUES (1, 666),
        (1, 777);

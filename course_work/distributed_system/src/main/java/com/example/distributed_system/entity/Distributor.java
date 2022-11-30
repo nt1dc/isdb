@@ -37,7 +37,7 @@ public class Distributor {
     @Enumerated
     private Mood mood;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "distributor_id")
     private Set<DistributorSkill> distributorSkills = new LinkedHashSet<>();
 

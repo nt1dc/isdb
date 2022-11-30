@@ -35,7 +35,7 @@ public class DistributionCommittee {
     @Column(name = "estimation_error")
     private BigDecimal estimationError;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "distribution_committee_id")
     private Set<Distributor> distributors = new LinkedHashSet<>();
 

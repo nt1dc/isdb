@@ -33,7 +33,7 @@ public class DistributionLayer {
     @OneToOne(mappedBy = "distributionLayer")
     private World world;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "distribution_layer_id")
     private Set<DistributionCommittee> distributionCommittees = new LinkedHashSet<>();
 

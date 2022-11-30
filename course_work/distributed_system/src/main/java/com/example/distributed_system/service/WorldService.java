@@ -119,7 +119,7 @@ public class WorldService {
 
         hell.getHumans().forEach(human -> {
             long sum = human.getDemonHumen().stream().mapToLong(demon -> demon.getDemonDemonSpecialisations().stream().mapToLong(DemonSpecialisation::getPower).sum()).sum();
-            human.setNumberOfRighteousDeeds((int) (human.getNumberOfRighteousDeeds() - sum));
+            human.setNumberOfRighteousDeeds((int) (human.getNumberOfRighteousDeeds() - sum-5));
             if (human.getNumberOfRighteousDeeds() <= 0) {
                 Demon generate = demonGenerator.generate(human, hell);
                 hell.getDemons().add(generate);
